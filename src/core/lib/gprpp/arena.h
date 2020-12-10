@@ -2,7 +2,7 @@
  *
  * Copyright 2017 gRPC authors.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -96,7 +96,8 @@ class Arena {
   //   where we wish to create an arena and then perform an immediate
   //   allocation.
   explicit Arena(size_t initial_size, size_t initial_alloc = 0)
-      : total_used_(initial_alloc), initial_zone_size_(initial_size) {}
+      : total_used_(GPR_ROUND_UP_TO_ALIGNMENT_SIZE(initial_alloc))
+      , initial_zone_size_(initial_size) {}
 
   ~Arena();
 
